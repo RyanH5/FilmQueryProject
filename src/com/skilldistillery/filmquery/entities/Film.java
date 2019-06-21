@@ -13,14 +13,14 @@ public class Film {
 	private int length;
 	private double replacementCost;
 	private String rating;
-	private Set specialFeatures;
+	private String specialFeatures;
 
 	public Film() {
 		
 	}
 	
 	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, Set specialFeatures) {
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -115,11 +115,11 @@ public class Film {
 		this.rating = rating;
 	}
 
-	public Set getSpecialFeatures() {
+	public String getSpecialFeatures() {
 		return specialFeatures;
 	}
 
-	public void setSpecialFeatures(Set specialFeatures) {
+	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
 
