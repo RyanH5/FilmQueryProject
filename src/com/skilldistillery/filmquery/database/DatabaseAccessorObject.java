@@ -51,13 +51,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 public Actor findActorById(int actorId) throws SQLException {
 	Actor actor = null;
 	Connection conn = DriverManager.getConnection(URL, user, pass);
-	String sql = "SELECT id, first_name, last_name FROM actor WHERE id = actorId";
+	String sql = "SELECT id, first_name, last_name FROM actor WHERE id = ?";
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	pstmt.setInt(1, actorId);
 	ResultSet rs = pstmt.executeQuery();
 	
 	if (rs.next()) {
 		actor = new Actor();
+		actor.setId(rs.getInt("id"));
 		actor.setFirstName(rs.getString("first_name"));
 		actor.setLastName(rs.getString("last_name"));
 	}
