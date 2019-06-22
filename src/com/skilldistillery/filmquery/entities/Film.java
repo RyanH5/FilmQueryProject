@@ -14,7 +14,16 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private String language;
 	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	private List<Actor> actors;
 
 	public List<Actor> getActors() {
@@ -140,7 +149,7 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "\nFilm: \nTitle=\t\t" + title + "\nRelease Year=\t" + releaseYear + "\nRating=\t\t" + rating +"\nDescription=\t" + description +"\n\n"; 
+		return "\nFilm: \nTitle=\t\t" + title + "\nRelease Year=\t" + releaseYear + "\nRating=\t\t" + rating +"\nDescription=\t" + description +"\nLanguage=\t" + language + "\n"; 
 				 
 	}
 

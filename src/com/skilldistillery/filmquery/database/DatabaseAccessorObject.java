@@ -14,9 +14,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 	@Override
 	public Film findFilmById(int filmId) {
-		Film film = null;
-		String sql = "SELECT id, title, description, release_year, language_id, rental_duration, rental_rate, "
-				+ "length, replacement_cost, rating, special_features FROM film WHERE id = ?";
+		Film film = null; 
+		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration,  \n" + 
+				"film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name  FROM \n" + 
+				"film  JOIN language ON film.language_id = language.id WHERE film.id = ?";
 
 		try (Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -90,7 +91,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public List<Film> findFilmByKeyword(String keyword) {
 		List<Film> films = new ArrayList<>();
 		Film film = null;
-		String sql = "SELECT id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features  FROM film WHERE title LIKE ? OR description LIKE ?";
+		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration,\n" + 
+				"				film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name  FROM \n" + 
+				"				film  JOIN language ON film.language_id = language.id WHERE title LIKE ? OR description LIKE ?";
 		
 		try(Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -124,7 +127,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRentalRate(rs.getDouble("rental_rate"));
 				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
-				film.setSpecialFeatures(rs.getString("special_features"));			
+				film.setSpecialFeatures(rs.getString("special_features"));	
+				film.setLanguage(rs.getString("language.name"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
