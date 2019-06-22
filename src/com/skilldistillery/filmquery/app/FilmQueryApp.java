@@ -13,7 +13,7 @@ public class FilmQueryApp {
 	DatabaseAccessor db = new DatabaseAccessorObject();
 	boolean userHasLeft = false;
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) {
 		FilmQueryApp app = new FilmQueryApp();
 		app.launch();
 	}
@@ -50,7 +50,11 @@ public class FilmQueryApp {
 			int userIdInput = input.nextInt();
 			input.nextLine();
 			Film film = db.findFilmById(userIdInput);
-			System.out.println(film.toString());
+			if (film instanceof Film) {
+				System.out.println(film.toString());
+			} else {
+				System.out.println("Film not available");
+			}
 			break;
 		case 2: 
 			System.out.println("Enter keyword:");
