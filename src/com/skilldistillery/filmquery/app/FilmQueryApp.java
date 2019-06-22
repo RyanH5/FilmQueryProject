@@ -44,12 +44,14 @@ public class FilmQueryApp {
 		int userInput = input.nextInt();
 		input.nextLine();
 		
+		Film film = null;
+		List<Film> films = new ArrayList<>();
 		switch (userInput) {
 		case 1:
 			System.out.println("Enter film id:");
 			int userIdInput = input.nextInt();
 			input.nextLine();
-			Film film = db.findFilmById(userIdInput);
+			film = db.findFilmById(userIdInput);
 			if (film instanceof Film) {
 				System.out.println(film.toString());
 			} else {
@@ -59,6 +61,15 @@ public class FilmQueryApp {
 		case 2: 
 			System.out.println("Enter keyword:");
 			String userKeyword = input.nextLine();
+			films = db.findFilmByKeyword(userKeyword);
+			if (films.size() > 0) {
+				for (Film movie: films) {
+					System.out.println(movie.toString());
+				}
+			} else {
+				System.out.println("Sorry, no film available including: " + userKeyword);
+				System.out.println();
+			}
 			break;
 		case 3:
 			System.out.println("Thank you.  Come again!");
