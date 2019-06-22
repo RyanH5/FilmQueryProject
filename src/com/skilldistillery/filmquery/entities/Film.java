@@ -14,6 +14,21 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	
+	private List<Actor> actors;
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	public Film(List<Actor> actors) {
+		super();
+		this.actors = actors;
+	}
 
 	public Film() {
 		
