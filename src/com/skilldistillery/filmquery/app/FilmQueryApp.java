@@ -1,6 +1,7 @@
 package com.skilldistillery.filmquery.app;
 
 import java.io.IOException;
+import java.lang.module.FindException;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -54,6 +55,15 @@ public class FilmQueryApp {
 			film = db.findFilmById(userIdInput);
 			if (film instanceof Film) {
 				System.out.println(film.toString());
+				List<Actor> actors = db.findActorsByFilmId(film.getId());
+				System.out.println("Actors:\t\t[");
+				
+				for (Actor star: actors) {
+					System.out.println("\t\t" + star);
+				}
+				System.out.println("\t\t]");
+				System.out.println();
+				
 			} else {
 				System.out.println("Film not available");
 			}
@@ -64,7 +74,14 @@ public class FilmQueryApp {
 			films = db.findFilmByKeyword(userKeyword);
 			if (films.size() > 0) {
 				for (Film movie: films) {
-					System.out.println(movie.toString());
+					System.out.println(movie);
+					System.out.println("Actors:\t\t[");
+					List<Actor> actors = db.findActorsByFilmId(movie.getId());
+						for (Actor star: actors) {
+							System.out.println("\t\t" + star);
+						}
+						System.out.println("\t\t]");
+						System.out.println();
 				}
 			} else {
 				System.out.println("Sorry, no film available including: " + userKeyword);
