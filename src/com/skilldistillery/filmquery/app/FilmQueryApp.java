@@ -55,6 +55,14 @@ public class FilmQueryApp {
 			film = db.findFilmById(userIdInput);
 			if (film instanceof Film) {
 				System.out.println(film.toString());
+				List<Actor> actors = db.findActorsByFilmId(film.getId());
+				System.out.println("Actors:\t\t[");
+				
+				for (Actor star: actors) {
+					System.out.println("\t\t" + star);
+				}
+				System.out.println("\t\t]");
+				System.out.println();
 				
 			} else {
 				System.out.println("Film not available");

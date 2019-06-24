@@ -93,7 +93,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film film = null;
 		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration,\n" + 
 				"				film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, language.name  FROM \n" + 
-				"				film  JOIN language ON film.language_id = language.id WHERE title LIKE ? OR description LIKE ?";
+				"				film  JOIN language ON film.language_id = language.id WHERE film.title LIKE ? OR film.description LIKE ?";
 		
 		try(Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pstmt = conn.prepareStatement(sql);) {
